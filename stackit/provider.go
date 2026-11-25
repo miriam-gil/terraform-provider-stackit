@@ -16,11 +16,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/oidcadapters"
 
-	"github.com/stackitcloud/terraform-provider-stackit/stackit/internal/services/identity/group"
-	"github.com/stackitcloud/terraform-provider-stackit/stackit/internal/services/identity/groups"
-	"github.com/stackitcloud/terraform-provider-stackit/stackit/internal/services/identity/members"
 	"github.com/stackitcloud/terraform-provider-stackit/stackit/internal/services/identity/user"
-	"github.com/stackitcloud/terraform-provider-stackit/stackit/internal/services/identity/users"
 
 	"github.com/stackitcloud/terraform-provider-stackit/stackit/internal/core"
 	"github.com/stackitcloud/terraform-provider-stackit/stackit/internal/features"
@@ -891,11 +887,7 @@ func (p *Provider) DataSources(_ context.Context) []func() datasource.DataSource
 		vpnConnection.NewVPNConnectionDataSource,
 		vpnGateway.NewVPNGatewayDataSource,
 		vpnGatewayStatus.NewVPNGatewayStatusDataSource,
-		group.NewGroupDataSource,
-		groups.NewGroupsDataSource,
-		members.NewGroupMemberDataSource,
 		user.NewUserDataSource,
-		users.NewUsersDataSource,
 	}
 	dataSources = append(dataSources, customRole.NewCustomRoleDataSources()...)
 	dataSources = append(dataSources, iamRoleBindingsV1.NewRoleBindingsDatasources()...)
@@ -1012,8 +1004,6 @@ func (p *Provider) Resources(_ context.Context) []func() resource.Resource {
 		iaasRoutingTable.NewRoutingTableResource,
 		iaasRoutingTableRoute.NewRoutingTableRouteResource,
 		iaasVolume.NewVolumeResource,
-		group.NewGroupResource,
-		members.NewGroupMemberResource,
 	}
 	resources = append(resources, roleAssignements.NewRoleAssignmentResources()...)
 	resources = append(resources, customRole.NewCustomRoleResources()...)
